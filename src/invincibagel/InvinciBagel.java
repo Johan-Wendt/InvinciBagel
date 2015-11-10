@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -26,7 +27,7 @@ public class InvinciBagel extends Application {
     StackPane root;
     Image splashScreen, instructionlayer, legalLayer, screenLayer;
     ImageView splashScreenBackplate, splashScreenTextArea;
-    Button gameButton, helpButton, screenButton, legalButton;
+    Button gameButton, helpButton, scoreButton, legalButton;
     HBox buttonContainer; 
     Insets buttonContainerPadding;
     
@@ -45,7 +46,7 @@ public class InvinciBagel extends Application {
         helpButton.setOnAction(e -> {
             System.out.println("Hello World!");
         });
-        screenButton.setOnAction(e -> {
+        scoreButton.setOnAction(e -> {
             System.out.println("Hello World!");
         });
         legalButton.setOnAction(e -> {
@@ -55,8 +56,9 @@ public class InvinciBagel extends Application {
         
         root = new StackPane();
         
-        scene = new Scene(root, 300, 250);
+        scene = new Scene(root, 301, 250);
        
+        
         primaryStage.show();
     }
 
@@ -67,6 +69,23 @@ public class InvinciBagel extends Application {
         launch(args);
     }
     private void createSplashScreenNodes() {
+        root = new StackPane();
+        scene = new Scene(root, 640, 400);
+        gameButton = new Button();
+        gameButton.setText("PLAY GAME");
+        helpButton = new Button();
+        helpButton.setText("INSTRUCTIONS");
+        scoreButton = new Button();
+        scoreButton.setText("HIGHSCORES");
+        legalButton = new Button();
+        legalButton.setText("LEGALS & CREDITS");
+        
+        buttonContainer = new HBox(12);
+        buttonContainer.setAlignment(Pos.BOTTOM_LEFT);
+        buttonContainerPadding = new Insets(0, 0, 10, 16);
+        buttonContainer.setPadding(buttonContainerPadding);
+        
+        
         splashScreen = new Image("/invincibagelsplash.png", 640, 400, true, false, true);
         splashScreenBackplate = new ImageView(splashScreen);
         
