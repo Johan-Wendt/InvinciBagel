@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class InvinciBagel extends Application {
     Scene scene;
     StackPane root;
-    Image splashScreen, instructionlayer, legalLayer, screenLayer;
+    Image splashScreen, instructionlayer, legalLayer, scoresLayer;
     ImageView splashScreenBackplate, splashScreenTextArea;
     Button gameButton, helpButton, scoreButton, legalButton;
     HBox buttonContainer; 
@@ -44,19 +44,19 @@ public class InvinciBagel extends Application {
             System.out.println("Hello World!");
         });
         helpButton.setOnAction(e -> {
-            System.out.println("Hello World!");
+            splashScreenTextArea.setImage(instructionlayer);
         });
         scoreButton.setOnAction(e -> {
-            System.out.println("Hello World!");
+            splashScreenTextArea.setImage(scoresLayer);
         });
         legalButton.setOnAction(e -> {
-            System.out.println("Hello World!");
+            splashScreenTextArea.setImage(legalLayer);
         });
         
         
         root = new StackPane();
         
-        scene = new Scene(root, 301, 250);
+        scene = new Scene(root, 300, 250);
        
         
         primaryStage.show();
@@ -71,27 +71,31 @@ public class InvinciBagel extends Application {
     private void createSplashScreenNodes() {
         root = new StackPane();
         scene = new Scene(root, 640, 400);
+        buttonContainer = new HBox(12);
+        buttonContainer.setAlignment(Pos.BOTTOM_LEFT);
+        buttonContainerPadding = new Insets(0, 0, 10, 16);
+        buttonContainer.setPadding(buttonContainerPadding);
         gameButton = new Button();
         gameButton.setText("PLAY GAME");
+        gameButton.setLayoutX(0);
         helpButton = new Button();
         helpButton.setText("INSTRUCTIONS");
         scoreButton = new Button();
         scoreButton.setText("HIGHSCORES");
         legalButton = new Button();
         legalButton.setText("LEGALS & CREDITS");
-        
-        buttonContainer = new HBox(12);
-        buttonContainer.setAlignment(Pos.BOTTOM_LEFT);
-        buttonContainerPadding = new Insets(0, 0, 10, 16);
-        buttonContainer.setPadding(buttonContainerPadding);
-        
-        
+        buttonContainer.getChildren().addAll(gameButton, helpButton, scoreButton, legalButton);
         splashScreen = new Image("/invincibagelsplash.png", 640, 400, true, false, true);
         splashScreenBackplate = new ImageView(splashScreen);
+        instructionlayer = new Image("/invincibagelinstruct.png", 640, 400, true, false, true);
+        splashScreenTextArea = new ImageView(instructionlayer);
+        legalLayer = new Image( "/invincibagelcreds.png", 640, 400, true, false, true );
         
     }
     private void addNodesToStackPane() {
-        
+        root.getChildren().addAll(splashScreenBackplate, splashScreenTextArea, buttonContainer);
+        legalLayer = new Image( "/invincibagelcreds.png", 640, 400, true, false, true );
+        scoresLayer = new Image( "/invincibagelscores.png", 640, 400, true, false, true );
     }
     
 }
