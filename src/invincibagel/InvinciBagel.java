@@ -30,6 +30,7 @@ public class InvinciBagel extends Application {
     Button gameButton, helpButton, scoreButton, legalButton;
     HBox buttonContainer; 
     Insets buttonContainerPadding;
+    GamePlayLoop gamePlayLoop;
     
     
     @Override
@@ -52,6 +53,8 @@ public class InvinciBagel extends Application {
         legalButton.setOnAction(e -> {
             splashScreenTextArea.setImage(legalLayer);
         });
+        gamePlayLoop = new GamePlayLoop();
+        gamePlayLoop.start();
         
         
         root = new StackPane();
