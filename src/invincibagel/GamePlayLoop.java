@@ -15,6 +15,7 @@ public class GamePlayLoop extends AnimationTimer{
 
     @Override
     public void handle(long now) {
+        System.out.println("called");
     }
     @Override
     public void start() {
