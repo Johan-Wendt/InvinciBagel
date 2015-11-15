@@ -12,10 +12,15 @@ import javafx.animation.AnimationTimer;
  * @author johanwendt
  */
 public class GamePlayLoop extends AnimationTimer{
+    protected InvinciBagel invinciBagel;
+    
+    public GamePlayLoop(InvinciBagel iBagel) {
+        invinciBagel = iBagel;
+    }
 
     @Override
     public void handle(long now) {
-        System.out.println("called");
+        invinciBagel.getiBagel().update();
     }
     @Override
     public void start() {
