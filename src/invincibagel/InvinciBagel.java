@@ -27,10 +27,14 @@ public class InvinciBagel extends Application {
     public static final double WIDTH = 640, HEIGHT = 400;
     private boolean up, down, left, right, wKey, aKey, sKey, dKey;
     private Bagel iBagel;
+    private Prop iPR0, iPR1;;
+    private PropH iPH0;
+    private PropV iPV0, iPV1;
+    private PropB iPB0;
     private Scene scene;
     private StackPane root;
     private Image splashScreen, instructionLayer, legalLayer, scoresLayer;
-    private Image iB0, iB1, iB2, iB3, iB4, iB5, iB6, iB7, iB8;
+    private Image iB0, iB1, iB2, iB3, iB4, iB5, iB6, iB7, iB8, iP0, iP1;
     private ImageView splashScreenBackplate, splashScreenTextArea;
     private Button gameButton, helpButton, scoreButton, legalButton;
     private HBox buttonContainer; 
@@ -142,16 +146,26 @@ public class InvinciBagel extends Application {
     iB6 = new Image("/sprite6.png", 81, 81, true, false, true);
     iB7 = new Image("/sprite7.png", 81, 81, true, false, true);
     iB8 = new Image("/sprite8.png", 81, 81, true, false, true);
+    iP0 = new Image("/prop0.png", 72, 32, true, false, true);
+    iP1 = new Image("/prop1.png", 496, 92, true, false, true);
     }
 
     private void createGameActors() {
         iBagel = new Bagel(this, "M150 0 L75 500 L225 200 Z", 0, 0, iB0,iB1,iB2,iB3,iB4,iB5,iB6,iB7,iB8);
+        iPR0 = new Prop("M150 0 L75 200 L225 200 Z", 0, 148, iP0);
+        iPR1 = new Prop("M150 0 L75 200 L225 200 Z", 0, -150, iP1);
+        iPH0 = new PropH("M150 0 L75 200 L225 200 Z", 72, 148, iP0);
+        iPV0 = new PropV("M150 0 L75 200 L225 200 Z", 72, 148, iP0);
+        iPV1 = new PropV("M150 0 L75 200 L225 200 Z", 0, -58, iP1);
+        iPB0 = new PropB("M150 0 L75 200 L225 200 Z", 0, 116, iP0);
     }
     private void addGameActorNodes() { 
+        root.getChildren().addAll(iPR0.spriteFrame, iPH0.spriteFrame, iPV0.spriteFrame, iPB0.spriteFrame, iPR1.spriteFrame, iPV1.spriteFrame);
         root.getChildren().add(iBagel.spriteFrame);
     }
     private void createCastingDirection() { 
         castDirector = new CastingDirector();
+        castDirector.addCurrentCast(iPR0, iPH0, iPV0, iPB0, iPR1, iPV1);
         castDirector.addCurrentCast(iBagel);
     }
     private void createStartGameLoop() { 
