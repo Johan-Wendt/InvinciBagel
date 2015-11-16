@@ -5,6 +5,7 @@
  */
 package invincibagel;
 
+import java.net.URL;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -16,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -41,6 +43,8 @@ public class InvinciBagel extends Application {
     private Insets buttonContainerPadding;
     private GamePlayLoop gamePlayLoop;
     private CastingDirector castDirector;
+    private AudioClip iSound0, iSound1, iSound2, iSound3, iSound4, iSound5;
+    private URL iAudioFile0, iAudioFile1, iAudioFile2, iAudioFile3, iAudioFile4, iAudioFile5;
     
     @Override
     public void start(Stage primaryStage) {
@@ -50,6 +54,7 @@ public class InvinciBagel extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         createSceneEventHandling();
+        loadAudioAssets(); 
         loadImageAssets();
         createGameActors();
         addGameActorNodes();
@@ -239,6 +244,21 @@ public class InvinciBagel extends Application {
 
     public void setdKey(boolean dKey) {
         this.dKey = dKey;
+    }
+
+    private void loadAudioAssets() {
+        iAudioFile0 = getClass().getResource("/leftmono.wav");
+        iSound0 = new AudioClip(iAudioFile0.toString());
+        iAudioFile1 = getClass().getResource("/rightmono.wav"); 
+        iSound1 = new AudioClip(iAudioFile1.toString()); 
+        iAudioFile2 = getClass().getResource("/upmono.wav"); 
+        iSound2 = new AudioClip(iAudioFile2.toString());
+        iAudioFile3 = getClass().getResource("/downmono.wav");
+        iSound3 = new AudioClip(iAudioFile3.toString());
+        iAudioFile4 = getClass().getResource("/wmono.wav");
+        iSound4 = new AudioClip(iAudioFile4.toString());
+        iAudioFile5 = getClass().getResource("/smono.wav");
+        iSound5 = new AudioClip(iAudioFile5.toString());
     }
     
 }
