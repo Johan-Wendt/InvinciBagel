@@ -260,5 +260,29 @@ public class InvinciBagel extends Application {
         iAudioFile5 = getClass().getResource("/smono.wav");
         iSound5 = new AudioClip(iAudioFile5.toString());
     }
+
+    public void playiSound0() {
+        this.iSound0 = iSound0;
+    }
+
+    public void playiSound1() {
+        this.iSound0.play();
+    }
+
+    public void playiSound2() {
+        this.iSound2.play();
+    }
+
+    public void playiSound3() {
+        this.iSound3.play();
+    }
+
+    public void playiSound4() {
+        this.iSound4.play();
+    }
+
+    public void playiSound5() {
+        this.iSound5.play();
+    }
     
 }
