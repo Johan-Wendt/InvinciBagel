@@ -42,7 +42,7 @@ public class InvinciBagel extends Application {
     private HBox buttonContainer; 
     private Insets buttonContainerPadding;
     private GamePlayLoop gamePlayLoop;
-    private CastingDirector castDirector;
+    CastingDirector castDirector;
     private AudioClip iSound0, iSound1, iSound2, iSound3, iSound4, iSound5;
     private URL iAudioFile0, iAudioFile1, iAudioFile2, iAudioFile3, iAudioFile4, iAudioFile5;
     
@@ -156,22 +156,24 @@ public class InvinciBagel extends Application {
     }
 
     private void createGameActors() {
-        iBagel = new Bagel(this, "M150 0 L75 500 L225 200 Z", 0, 0, iB0,iB1,iB2,iB3,iB4,iB5,iB6,iB7,iB8);
-        iPR0 = new Prop("M150 0 L75 200 L225 200 Z", 0, 148, iP0);
-        iPR1 = new Prop("M150 0 L75 200 L225 200 Z", 0, -150, iP1);
-        iPH0 = new PropH("M150 0 L75 200 L225 200 Z", 72, 148, iP0);
-        iPV0 = new PropV("M150 0 L75 200 L225 200 Z", 72, 148, iP0);
-        iPV1 = new PropV("M150 0 L75 200 L225 200 Z", 0, -58, iP1);
-        iPB0 = new PropB("M150 0 L75 200 L225 200 Z", 0, 116, iP0);
+        iBagel = new Bagel(this, "M57,10 L46,25 30,26 41,18,44 27,54 37,57 57,75 39,81 43,81 45,53 54,40 63,43 72,26 Z", 0, 0, iB0,iB1,iB2,iB3,iB4,iB5,iB6,iB7,iB8);
+        iPR0 = new Prop("M0 0 L0 32 72 32 72 0 Z", 0, 148, iP0);
+       // iPR1 = new Prop("M150 0 L75 200 L225 200 Z", 0, -150, iP1);
+        iPH0 = new PropH("M0 0 L0 32 72 32 72 0 Z", 72, 148, iP0);
+        iPV0 = new PropV("M0 0 L0 32 72 32 72 0 Z", 72, 148, iP0);
+       // iPV1 = new PropV("M150 0 L75 200 L225 200 Z", 0, -58, iP1);
+        iPB0 = new PropB("M0 0 L0 32 72 32 72 0 Z", 0, 116, iP0);
     }
     private void addGameActorNodes() { 
-        root.getChildren().addAll(iPR0.spriteFrame, iPH0.spriteFrame, iPV0.spriteFrame, iPB0.spriteFrame, iPR1.spriteFrame, iPV1.spriteFrame);
+        //, iPR1.spriteFrame, iPV1.spriteFrame
+        root.getChildren().addAll(iPR0.spriteFrame, iPH0.spriteFrame, iPV0.spriteFrame, iPB0.spriteFrame);
         root.getChildren().add(iBagel.spriteFrame);
     }
     private void createCastingDirection() { 
+        //, iPR1, iPV1
         castDirector = new CastingDirector();
-        castDirector.addCurrentCast(iPR0, iPH0, iPV0, iPB0, iPR1, iPV1);
-        castDirector.addCurrentCast(iBagel);
+        castDirector.addCurrentCast(iPR0, iPH0, iPV0, iPB0);
+        //castDirector.addCurrentCast(iBagel);
     }
     private void createStartGameLoop() { 
         gamePlayLoop = new GamePlayLoop(this); 

@@ -24,7 +24,7 @@ public class CastingDirector {
     public CastingDirector() {
         
     }
-    public List<Actor> getCurrantCast() {
+    public List<Actor> getCurrentCast() {
         return CURRENT_CAST;
     }
     public void addCurrentCast(Actor... actors) {

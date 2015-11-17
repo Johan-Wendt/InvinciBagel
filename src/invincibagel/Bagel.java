@@ -36,6 +36,7 @@ public class Bagel extends Hero {
         setBoundaries();
         setImageState();
         moveInvinciBagel(iX, iY);
+        checkcolliosion();
     }
     @Override
     public boolean collide(Actor object) {
@@ -126,6 +127,13 @@ public class Bagel extends Hero {
         }
         if(invinciBagel.issKey()) {
             spriteFrame.setImage(imageStates.get(8));
+        }
+    }
+
+    private void checkcolliosion() {
+        for(int i=0; i<invinciBagel.castDirector.getCurrentCast().size(); i++) {
+            Actor object = invinciBagel.castDirector.getCurrentCast().get(i);
+            collide(object); 
         }
     }
 }
