@@ -8,6 +8,8 @@ package invincibagel;
 import javafx.scene.image.Image;
 import static invincibagel.InvinciBagel.WIDTH;
 import static invincibagel.InvinciBagel.HEIGHT;
+import javafx.scene.shape.SVGPath;
+import javafx.scene.shape.Shape;
 
 
 /**
@@ -38,9 +40,29 @@ public class Bagel extends Hero {
         moveInvinciBagel(iX, iY);
         checkcolliosion();
     }
+    private void checkcolliosion() {
+        for(int i=0; i<invinciBagel.castDirector.getCurrentCast().size(); i++) {
+            Actor object = invinciBagel.castDirector.getCurrentCast().get(i);
+            collide(object); 
+        }
+    }
     @Override
     public boolean collide(Actor object) {
-        return false;
+        boolean collisionDetect = false;
+        if (invinciBagel.getiBagel().spriteFrame.getBoundsInParent().intersects(object.getSpriteFrame().getBoundsInParent())) {
+            Shape intersection = SVGPath.intersect(invinciBagel.getiBagel().getSpriteBound(), object.getSpriteBound()); 
+            if (intersection.getBoundsInLocal().getWidth() != -1) {
+                collisionDetect = true; 
+            }
+        }
+        if(collisionDetect) {
+            invinciBagel.playiSound0();
+            invinciBagel.castDirector.addToRemovedActors(object);
+            invinciBagel.getRoot().getChildren().remove(object.getSpriteFrame());
+            invinciBagel.castDirector.resetRemovedActors();
+            return true; 
+        }
+        return false; 
     }
     private void setXYLocation() { 
         if(invinciBagel.isRight()) iX += vX;
@@ -127,13 +149,6 @@ public class Bagel extends Hero {
         }
         if(invinciBagel.issKey()) {
             spriteFrame.setImage(imageStates.get(8));
-        }
-    }
-
-    private void checkcolliosion() {
-        for(int i=0; i<invinciBagel.castDirector.getCurrentCast().size(); i++) {
-            Actor object = invinciBagel.castDirector.getCurrentCast().get(i);
-            collide(object); 
         }
     }
 }

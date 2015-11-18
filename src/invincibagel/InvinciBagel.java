@@ -156,7 +156,7 @@ public class InvinciBagel extends Application {
     }
 
     private void createGameActors() {
-        iBagel = new Bagel(this, "M57,10 L46,25 30,26 41,18,44 27,54 37,57 57,75 39,81 43,81 45,53 54,40 63,43 72,26 Z", 0, 0, iB0,iB1,iB2,iB3,iB4,iB5,iB6,iB7,iB8);
+        iBagel = new Bagel(this, "M57,10 L46,25 30,26 30,41,18,41 18,44 27,56 37,57 35,75 39,81 43,81 45,53 54,40 63,43 72,26 Z", 0, 0, iB0,iB1,iB2,iB3,iB4,iB5,iB6,iB7,iB8);
         iPR0 = new Prop("M0 0 L0 32 72 32 72 0 Z", 0, 148, iP0);
        // iPR1 = new Prop("M150 0 L75 200 L225 200 Z", 0, -150, iP1);
         iPH0 = new PropH("M0 0 L0 32 72 32 72 0 Z", 72, 148, iP0);
@@ -248,6 +248,11 @@ public class InvinciBagel extends Application {
         this.dKey = dKey;
     }
 
+    public StackPane getRoot() {
+        return root;
+    }
+    
+
     private void loadAudioAssets() {
         iAudioFile0 = getClass().getResource("/leftmono.wav");
         iSound0 = new AudioClip(iAudioFile0.toString());
@@ -264,7 +269,7 @@ public class InvinciBagel extends Application {
     }
 
     public void playiSound0() {
-        this.iSound0 = iSound0;
+        this.iSound0.play();
     }
 
     public void playiSound1() {
