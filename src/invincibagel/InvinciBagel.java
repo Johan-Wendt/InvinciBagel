@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -19,6 +20,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -34,7 +37,7 @@ public class InvinciBagel extends Application {
     private PropV iPV0, iPV1;
     private PropB iPB0;
     private Scene scene;
-    private StackPane root;
+    private Group root;
     private Image splashScreen, instructionLayer, legalLayer, scoresLayer;
     private Image iB0, iB1, iB2, iB3, iB4, iB5, iB6, iB7, iB8, iP0, iP1;
     private ImageView splashScreenBackplate, splashScreenTextArea;
@@ -45,10 +48,14 @@ public class InvinciBagel extends Application {
     CastingDirector castDirector;
     private AudioClip iSound0, iSound1, iSound2, iSound3, iSound4, iSound5;
     private URL iAudioFile0, iAudioFile1, iAudioFile2, iAudioFile3, iAudioFile4, iAudioFile5;
+    int gameScore = 0;
+    Text scoreText;
+    private Font scoreFont;
+    private Text scoreLabel;
     
     @Override
     public void start(Stage primaryStage) {
-        root = new StackPane();
+        root = new Group();
         scene = new Scene(root, WIDTH, HEIGHT, Color.WHITE);
         primaryStage.setTitle("InvinciBagel");
         primaryStage.setScene(scene);
@@ -71,8 +78,21 @@ public class InvinciBagel extends Application {
         launch(args);
     }
     private void createSplashScreenNodes() {
+        scoreText = new Text();
+        scoreText.setText(String.valueOf(gameScore)); 
+        scoreText.setLayoutY(385);
+        scoreText.setLayoutX(565);
+        scoreFont = new Font("Verdana", 20);
+        scoreText.setFont(scoreFont);
+        scoreText.setFill(Color.BLUE); 
+        scoreLabel = new Text(); 
+        scoreLabel.setText("SCORE:"); 
+        scoreLabel.setLayoutY(385);
+        scoreLabel.setLayoutX(545); 
+        scoreLabel.setFont(scoreFont);
+        scoreLabel.setFill(Color.BLACK);
         buttonContainer = new HBox(12);
-        buttonContainer.setAlignment(Pos.BOTTOM_LEFT);
+        buttonContainer.setLayoutY(365);
         buttonContainerPadding = new Insets(0, 0, 10, 16);
         buttonContainer.setPadding(buttonContainerPadding);
         gameButton = new Button();
@@ -108,7 +128,7 @@ public class InvinciBagel extends Application {
         
     }
     private void addNodesToStackPane() {
-        root.getChildren().addAll(splashScreenBackplate, splashScreenTextArea, buttonContainer);
+        root.getChildren().addAll(splashScreenBackplate, splashScreenTextArea, buttonContainer, scoreText, scoreLabel);
     }
 
     private void createSceneEventHandling() {
@@ -156,13 +176,13 @@ public class InvinciBagel extends Application {
     }
 
     private void createGameActors() {
-        iBagel = new Bagel(this, "M57,10 L46,25 30,26 30,41,18,41 18,44 27,56 37,57 35,75 39,81 43,81 45,53 54,40 63,43 72,26 Z", 0, 0, iB0,iB1,iB2,iB3,iB4,iB5,iB6,iB7,iB8);
-        iPR0 = new Prop("M0 0 L0 32 72 32 72 0 Z", 0, 148, iP0);
+        iBagel = new Bagel(this, "M57,10 L46,25 30,26 30,41,18,41 18,44 27,56 37,57 35,75 39,81 43,81 45,53 54,40 63,43 72,26 Z", WIDTH / 2, HEIGHT / 2, iB0,iB1,iB2,iB3,iB4,iB5,iB6,iB7,iB8);
+        iPR0 = new Prop("M0 0 L0 32 72 32 72 0 Z", 30, 48, iP0);
        // iPR1 = new Prop("M150 0 L75 200 L225 200 Z", 0, -150, iP1);
-        iPH0 = new PropH("M0 0 L0 32 72 32 72 0 Z", 72, 148, iP0);
-        iPV0 = new PropV("M0 0 L0 32 72 32 72 0 Z", 72, 148, iP0);
+        iPH0 = new PropH("M0 0 L0 32 72 32 72 0 Z", 172, 248, iP0);
+        iPV0 = new PropV("M0 0 L0 32 72 32 72 0 Z", 396, 116, iP0);
        // iPV1 = new PropV("M150 0 L75 200 L225 200 Z", 0, -58, iP1);
-        iPB0 = new PropB("M0 0 L0 32 72 32 72 0 Z", 0, 116, iP0);
+        iPB0 = new PropB("M0 0 L0 32 72 32 72 0 Z", 512, 316, iP0);
     }
     private void addGameActorNodes() { 
         //, iPR1.spriteFrame, iPV1.spriteFrame
@@ -248,7 +268,7 @@ public class InvinciBagel extends Application {
         this.dKey = dKey;
     }
 
-    public StackPane getRoot() {
+    public Group getRoot() {
         return root;
     }
     
