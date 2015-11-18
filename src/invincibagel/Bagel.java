@@ -43,24 +43,21 @@ public class Bagel extends Hero {
     private void checkcolliosion() {
         for(int i=0; i<invinciBagel.castDirector.getCurrentCast().size(); i++) {
             Actor object = invinciBagel.castDirector.getCurrentCast().get(i);
-            collide(object); 
+            if (collide(object)) {
+                invinciBagel.playiSound0(); 
+                invinciBagel.castDirector.addToRemovedActors(object); 
+                invinciBagel.getRoot().getChildren().remove(object.getSpriteFrame());
+                invinciBagel.castDirector.resetRemovedActors();
+            }
         }
     }
     @Override
     public boolean collide(Actor object) {
-        boolean collisionDetect = false;
         if (invinciBagel.getiBagel().spriteFrame.getBoundsInParent().intersects(object.getSpriteFrame().getBoundsInParent())) {
             Shape intersection = SVGPath.intersect(invinciBagel.getiBagel().getSpriteBound(), object.getSpriteBound()); 
             if (intersection.getBoundsInLocal().getWidth() != -1) {
-                collisionDetect = true; 
+                return true; 
             }
-        }
-        if(collisionDetect) {
-            invinciBagel.playiSound0();
-            invinciBagel.castDirector.addToRemovedActors(object);
-            invinciBagel.getRoot().getChildren().remove(object.getSpriteFrame());
-            invinciBagel.castDirector.resetRemovedActors();
-            return true; 
         }
         return false; 
     }
