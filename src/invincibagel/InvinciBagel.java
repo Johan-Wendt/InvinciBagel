@@ -39,7 +39,7 @@ public class InvinciBagel extends Application {
     private Scene scene;
     private Group root;
     private Image splashScreen, instructionLayer, legalLayer, scoresLayer;
-    private Image iB0, iB1, iB2, iB3, iB4, iB5, iB6, iB7, iB8, iP0, iP1;
+    private Image iB0, iB1, iB2, iB3, iB4, iB5, iB6, iB7, iB8, iP0, iP1, iT0, iT1;
     private ImageView splashScreenBackplate, splashScreenTextArea;
     private Button gameButton, helpButton, scoreButton, legalButton;
     private HBox buttonContainer; 
@@ -52,6 +52,7 @@ public class InvinciBagel extends Application {
     Text scoreText;
     private Font scoreFont;
     private Text scoreLabel;
+    Treasure iTR0, iTR1;
     
     @Override
     public void start(Stage primaryStage) {
@@ -162,6 +163,8 @@ public class InvinciBagel extends Application {
     instructionLayer = new Image("/invincibagelinstruct.png", 640, 400, true, false, true); 
     legalLayer = new Image("/invincibagelcreds.png", 640, 400, true, false, true); 
     scoresLayer = new Image("/invincibagelscores.png", 640, 400, true, false, true);
+    iT0 = new Image("/treasure1.png", 64, 64, true, false, true);
+    iT1 = new Image("/treasure2.png", 64, 64, true, false, true);
     iB0 = new Image("/sprite0.png", 81, 81, true, false, true);
     iB1 = new Image("/sprite1.png", 81, 81, true, false, true);
     iB2 = new Image("/sprite2.png", 81, 81, true, false, true);
@@ -183,10 +186,12 @@ public class InvinciBagel extends Application {
         iPV0 = new PropV("M0 0 L0 32 72 32 72 0 Z", 396, 116, iP0);
        // iPV1 = new PropV("M150 0 L75 200 L225 200 Z", 0, -58, iP1);
         iPB0 = new PropB("M0 0 L0 32 72 32 72 0 Z", 512, 316, iP0);
+        iTR0 = new Treasure("M0 0 L0 64 64 64 64 0 Z", 50, 105, iT0); 
+        iTR1 = new Treasure("M0 0 L0 64 64 64 64 0 Z", 533, 206, iT1);
     }
     private void addGameActorNodes() { 
         //, iPR1.spriteFrame, iPV1.spriteFrame
-        root.getChildren().addAll(iPR0.spriteFrame, iPH0.spriteFrame, iPV0.spriteFrame, iPB0.spriteFrame);
+        root.getChildren().addAll(iPR0.spriteFrame, iPH0.spriteFrame, iPV0.spriteFrame, iPB0.spriteFrame, iTR0.spriteFrame, iTR1.spriteFrame);
         root.getChildren().add(iBagel.spriteFrame);
     }
     private void createCastingDirection() { 
