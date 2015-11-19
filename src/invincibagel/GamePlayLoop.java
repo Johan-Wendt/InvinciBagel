@@ -21,6 +21,7 @@ public class GamePlayLoop extends AnimationTimer{
     @Override
     public void handle(long now) {
         invinciBagel.getiBagel().update();
+        invinciBagel.iBeagel.update();
     }
     @Override
     public void start() {

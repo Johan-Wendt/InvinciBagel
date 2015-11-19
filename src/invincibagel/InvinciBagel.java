@@ -32,7 +32,7 @@ public class InvinciBagel extends Application {
     public static final double WIDTH = 640, HEIGHT = 400;
     private boolean up, down, left, right, wKey, aKey, sKey, dKey;
     private Bagel iBagel;
-    Enemy iBeagle;
+    Enemy iBeagel;
     Projectile iBullet, iCheese;
     private Prop iPR0, iPR1;;
     private PropH iPH0;
@@ -209,19 +209,19 @@ public class InvinciBagel extends Application {
         iPB0 = new PropB("M0 0 L0 32 72 32 72 0 Z", 512, 316, iP0);
         iTR0 = new Treasure("M0 0 L0 64 64 64 64 0 Z", 50, 105, iT0); 
         iTR1 = new Treasure("M0 0 L0 64 64 64 64 0 Z", 533, 206, iT1);
-        iBeagle = new Enemy("M0 6 L0 52 70 52 70 70 70 93 115 45 115 0 84 0 68 16 Z", 520, 160, iE0);
+        iBeagel = new Enemy(this, "M0 6 L0 52 70 52 70 70 70 93 115 45 115 0 84 0 68 16 Z", 520, 160, iE0);
         iBullet = new Projectile("M0 4 L0 16 64 16 64 4 Z", 8, 8, iC0);
         iCheese = new Projectile("M0 0 L0 32 29 32 29 0 Z", 96, 8, iC1);
     }
     private void addGameActorNodes() { 
         //, iPR1.spriteFrame, iPV1.spriteFrame
-        root.getChildren().addAll(iPR0.spriteFrame, iPH0.spriteFrame, iPV0.spriteFrame, iPB0.spriteFrame, iTR0.spriteFrame, iTR1.spriteFrame, iBeagle.spriteFrame, iBullet.spriteFrame, iCheese.spriteFrame);
+        root.getChildren().addAll(iPR0.spriteFrame, iPH0.spriteFrame, iPV0.spriteFrame, iPB0.spriteFrame, iTR0.spriteFrame, iTR1.spriteFrame, iBeagel.spriteFrame, iBullet.spriteFrame, iCheese.spriteFrame);
         root.getChildren().add(iBagel.spriteFrame);
     }
     private void createCastingDirection() { 
         //, iPR1, iPV1
         castDirector = new CastingDirector();
-        castDirector.addCurrentCast(iPR0, iPH0, iPV0, iPB0, iTR0, iTR1, iBeagle, iBullet, iCheese);
+        castDirector.addCurrentCast(iPR0, iPH0, iPV0, iPB0, iTR0, iTR1, iBeagel, iBullet, iCheese);
         //castDirector.addCurrentCast(iBagel);
     }
     private void createStartGameLoop() { 
