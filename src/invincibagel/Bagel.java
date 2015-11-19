@@ -152,18 +152,22 @@ public class Bagel extends Hero {
 
     private void scoringEngine(Actor object) {
         if(object instanceof Prop) {
-            invinciBagel.gameScore+=5;
+            invinciBagel.gameScore -=1;
             invinciBagel.playiSound0(); }
-        if(object instanceof PropV) {
-            invinciBagel.gameScore+=4; 
+        else if(object instanceof PropV) {
+            invinciBagel.gameScore -=2; 
             invinciBagel.playiSound1();
         }
-        if(object instanceof PropH) {
-            invinciBagel.gameScore+=3;
+        else if(object instanceof PropH) {
+            invinciBagel.gameScore -=1;
             invinciBagel.playiSound2(); }
-        if(object instanceof PropB) {
-            invinciBagel.gameScore+=2;
+        else if(object instanceof PropB) {
+            invinciBagel.gameScore-= 2;
             invinciBagel.playiSound3();
+        }
+        else if (object instanceof Treasure) {
+            invinciBagel.gameScore += 5;
+            invinciBagel.playiSound4();
         }
         invinciBagel.scoreText.setText(String.valueOf(invinciBagel.gameScore));
     }
